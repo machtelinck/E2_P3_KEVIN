@@ -40,6 +40,6 @@ jobs:
       - name: Check Syntax # check code formatting
         run: pycodestyle --statistics real_estate_app
       - name: Run Migrations # run migrations to create table in side car db container
-        run: python manage.py migrate
+        run: python manage.py real_estate_app/migrate
       - name: Run Test # running tests
         run: python manage.py test
