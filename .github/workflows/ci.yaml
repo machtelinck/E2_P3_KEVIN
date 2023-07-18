@@ -44,3 +44,6 @@ jobs:
       - name: Run Test # running tests
         working-directory: ./real_estate_app
         run: pytest -vv
+      - name: Run Coverage # running tests
+        working-directory: ./real_estate_app
+        run: pytest --cov=real_estate_app

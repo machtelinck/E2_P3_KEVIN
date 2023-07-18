@@ -1,0 +1,7 @@
+[run]
+source = real_estate_app
+
+[report]
+exclude_lines =
+    def __str__
+    
