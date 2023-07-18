@@ -3,7 +3,6 @@ from django.urls import reverse
 from .utils import make_prediction
 
 
-
 class TestUtils(TestCase):
     def test_good_prediction(self):
         good_input = {
@@ -64,26 +63,25 @@ class TestViews(TestCase):
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
-        self.assertEqual(int(response.context['data']), 220863)  # Replace 42 with the expected prediction result
+        self.assertEqual(int(response.context['data']), 220863)
 
-        def test_predict_view_post_method(self):
-            url = reverse('predict')
-            data = {
-                'Year_Built': '1990',
-                'Total_Bsmt_SF': '1000',
-                '1st_Flr_SF': '1200',
-                'Gr_Liv_Area': '1800',
-                'Garage_Area': '500',
-                'Overall_Qual': '8',
-                'Full_Bath': '2',
-                'Exter_Qual': '24',
-                'Kitchen_Qual': 'Gd',
-                'Neighborhood': 'CollgCr'
-            }
-            response = self.client.post(url, data)
-            self.assertEqual(response.status_code, 200)
-            self.assertEqual(response.content, b"The Input is not Correct")
-
+    def test_predict_view_post_method(self):
+        url = reverse('predict')
+        data = {
+            'Year_Built': '1990',
+            'Total_Bsmt_SF': '1000',
+            '1st_Flr_SF': '1200',
+            'Gr_Liv_Area': '1800',
+            'Garage_Area': '500',
+            'Overall_Qual': '8',
+            'Full_Bath': '2',
+            'Exter_Qual': '24',
+            'Kitchen_Qual': 'Gd',
+            'Neighborhood': 'CollgCr'
+        }
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, b"The Input is not Correct")
 
     def test_predict_view_get_method(self):
         url = reverse('predict')
