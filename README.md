@@ -1,6 +1,6 @@
 # Real Estate Price Prediction Web App
 
-![Real Estate Price Prediction](https://github.com/charles-42/E2_P3/data/screenshot.png)
+![Real Estate Price Prediction](https://github.com/charles-42/E2_P3/blob/develop/data/screenshot.png)
 
 ## Project Description
 
