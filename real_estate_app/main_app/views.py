@@ -1,11 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import numpy as np
-import pandas as pd
-import pickle
-
-model = pickle.load(open('main_app/static/models/finalized_model.pkl', 'rb'))
-
+from .utils import make_prediction
 
 def index(request):
     return render(request, 'index.html')
@@ -19,9 +14,11 @@ def predict(request):
                 X_predict[var]= request.POST.get(var)
             else:
                 X_predict[var]= int(request.POST.get(var))
-        print(X_predict)
-        pred = model.predict(pd.DataFrame(X_predict, index=[0]))
+        pred = make_prediction(X_predict)
 
-        return render(request, 'index.html', {'data': int(pred)})
+        if pred != 0:
+            return render(request, 'index.html', {'data': int(pred)})
+        else:
+            return HttpResponse("The Input is not Correct")     
     else:
         return HttpResponse("Method Not Allowed")
