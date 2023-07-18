@@ -7,6 +7,8 @@ def make_prediction(input: dict) -> float:
     model = pickle.load(open(model_path, 'rb'))
     try:
         pred = int(model.predict(pd.DataFrame(input, index=[0])))
+    except TypeError:
+        pred = 0
     except ValueError:
         pred = 0
     return pred

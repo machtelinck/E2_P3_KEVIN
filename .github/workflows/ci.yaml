@@ -42,4 +42,5 @@ jobs:
       - name: Run Migrations # run migrations to create table in side car db container
         run: python real_estate_app/manage.py migrate
       - name: Run Test # running tests
-        run: python real_estate_app/manage.py test
+        working-directory: ./real_estate_app
+        run: pytest -vv

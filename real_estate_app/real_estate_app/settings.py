@@ -13,6 +13,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+# Import coverage package
+import coverage
+
+# Initialize coverage
+cov = coverage.Coverage()
+
+# Start coverage before Django imports your settings
+cov.start()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "main_app"
+    'main_app',
 ]
 
 MIDDLEWARE = [
