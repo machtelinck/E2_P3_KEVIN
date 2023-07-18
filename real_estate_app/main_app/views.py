@@ -19,7 +19,7 @@ def predict(request):
                 X_predict[var]= request.POST.get(var)
             else:
                 X_predict[var]= int(request.POST.get(var))
-
+        print(X_predict)
         pred = model.predict(pd.DataFrame(X_predict, index=[0]))
 
         return render(request, 'index.html', {'data': int(pred)})

@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.9.6-alpine
+FROM python:3.9-slim-buster
 
 # Set the working directory
 WORKDIR /app
@@ -8,14 +8,20 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# # Install system dependencies
+# RUN apk add --no-cache build-base
+
+# # Install required libraries for numpy
+# RUN apk add --no-cache openblas-dev libffi-dev
+
 # Define the volumes to be mounted
 VOLUME .:/app
 
 # install dependencies
 COPY ./requirements.txt .
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
 
 # copy project
 COPY . .
@@ -24,4 +30,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the Django app
-CMD bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+CMD sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
