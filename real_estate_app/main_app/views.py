@@ -26,4 +26,3 @@ def predict(request):
             return HttpResponse("The Input is not Correct")
     else:
         return HttpResponse("Method Not Allowed")
-    

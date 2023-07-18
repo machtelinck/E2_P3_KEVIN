@@ -46,7 +46,7 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    def test_predict_view_post_method(self):
+    def test_predict_view_post_method_good_input(self):
         url = reverse('predict')
         data = {
             'Year_Built': '1990',
@@ -65,7 +65,7 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'index.html')
         self.assertEqual(int(response.context['data']), 220863)
 
-    def test_predict_view_post_method(self):
+    def test_predict_view_post_method_wrong_input(self):
         url = reverse('predict')
         data = {
             'Year_Built': '1990',
